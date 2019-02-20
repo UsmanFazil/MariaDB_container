@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	create("NOTARY")
+	create("ENotary")
 }
 
 func create(DBname string) {
@@ -70,6 +70,8 @@ func create(DBname string) {
 
 	stmt10, _ := db.Prepare(ContactsTable)
 	_, _ = stmt10.Exec()
+
+	fmt.Println("Schema created successfully..")
 
 	defer db.Close()
 }
