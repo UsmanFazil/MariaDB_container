@@ -22,6 +22,7 @@ func create(DBname string) {
 	CCTable := "create table CC ( userid varchar(40), contractID varchar(40), Access bool, PRIMARY KEY (userid,contractid), FOREIGN KEY (userid) REFERENCES Users (userid), FOREIGN KEY (contractid) REFERENCES Contract (contractid) );"
 	VerificationTable := "create table Verification (userid varchar(40),VerificationCode varchar(40) NOT NULL,exptime varchar(40) NOT NULL, PRIMARY KEY (userid), FOREIGN KEY (userid) REFERENCES Users (userid));"
 	ContactsTable := "Create table contacts ( userid varchar(40),contact varchar(40), PRIMARY KEY(userid,contact), FOREIGN KEY (userid) REFERENCES Users (userid) );"
+	TokenBlacklist := "Create table BlackList (token varchar(800),exptime varchar(40) NOT NULL, PRIMARY KEY(token));"
 
 	db, err := sql.Open("mysql", "root:mypass@tcp(127.0.0.1:3306)/")
 	if err != nil {
@@ -70,6 +71,9 @@ func create(DBname string) {
 
 	stmt10, _ := db.Prepare(ContactsTable)
 	_, _ = stmt10.Exec()
+
+	stmt11, _ := db.Prepare(TokenBlacklist)
+	_, _ = stmt11.Exec()
 
 	fmt.Println("Schema created successfully..")
 
