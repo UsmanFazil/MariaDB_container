@@ -59,8 +59,8 @@ func create(DBname string) {
 	stmt6, _ := db.Prepare(FolderTable)
 	_, _ = stmt6.Exec()
 
-	stmt7, _ := db.Prepare(CCTable)
-	_, _ = stmt7.Exec()
+	// stmt7, _ := db.Prepare(CCTable)
+	// _, _ = stmt7.Exec()
 
 	stmt8, _ := db.Prepare(ContractFolderTable)
 	_, _ = stmt8.Exec()
